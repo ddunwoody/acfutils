@@ -1,0 +1,10 @@
+[package]
+name = "acfutils"
+version = "0.1.0"
+edition = "2021"
+authors = ["David Dunwoody <david.dunwoody@gmail.com>"]
+
+[dependencies]
+acfutils-sys = { path = "../acfutils-sys" }
+nanorand = { version = "0.7.0", default-features = false, features = ["wyrand"] }
+tracing = "0.1.37"

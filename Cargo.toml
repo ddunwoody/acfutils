@@ -16,9 +16,3 @@ tracing = "0.1.37"
 bindgen = { version = "0.66.1", optional = true }
 build-support = { git = "https://github.com/ddunwoody/build-support.git" }
 cc = "1.0.79"
-
-[patch."https://github.com/ddunwoody/acfutils-sys.git"]
-acfutils-sys = { path = "../acfutils-sys" }
-
-[patch."https://github.com/ddunwoody/build-support"]
-build-support = { path = "../build-support" }

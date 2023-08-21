@@ -6,9 +6,17 @@
 #![deny(clippy::all)]
 #![warn(clippy::pedantic)]
 
+mod bindings;
+
 use nanorand::{Rng, WyRand};
 use std::ffi::{c_char, CStr, CString};
 use tracing::info;
+
+pub fn glew_init() {
+    unsafe {
+        bindings::glewInitWrapper();
+    }
+}
 
 pub fn crc64_init(seed: Option<u64>) {
     unsafe {
@@ -30,7 +38,10 @@ extern "C" fn log(message: *const c_char) {
     }
 }
 
-fn cstring(value: &str, f: fn(*const c_char)) {
+fn cstring<F>(value: &str, f: F)
+where
+    F: Fn(*const c_char),
+{
     let c_value = CString::new(value)
         .unwrap_or_else(|e| panic!("Could not create CString from '{value}': {e}"));
     f(c_value.as_ptr());

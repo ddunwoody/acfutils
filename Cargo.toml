@@ -13,6 +13,6 @@ nanorand = { version = "0.7.0", default-features = false, features = ["wyrand"] 
 tracing = "0.1.37"
 
 [build-dependencies]
-bindgen = { version = "0.66.1", optional = true }
+bindgen = { version = "0.68.1", optional = true }
 build-support = { git = "https://github.com/ddunwoody/build-support.git" }
-cc = "1.0.79"
+cc = "1.0.83"

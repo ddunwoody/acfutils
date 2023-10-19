@@ -1,2 +1,2 @@
 
-void glewInitWrapper(void);
+void glew_init(void);

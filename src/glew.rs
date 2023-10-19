@@ -8,6 +8,6 @@ use crate::bindings;
 
 pub fn init() {
     unsafe {
-        bindings::glewInitWrapper();
+        bindings::glew_init();
     }
 }

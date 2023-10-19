@@ -3,3 +3,6 @@
 extern "C" {
     pub fn glew_init();
 }
+extern "C" {
+    pub fn glew_dllmain_hook(reason: ::std::os::raw::c_ulong);
+}

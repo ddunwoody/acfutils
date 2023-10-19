@@ -43,5 +43,6 @@ fn build(platform: Platform, acfutils_path: &Path, xplane_sdk_path: &Path) {
     for flag in get_acfutils_cflags(platform, acfutils_path, xplane_sdk_path) {
         builder.flag(&flag);
     }
+    builder.flag("-Wno-unused-parameter");
     builder.file("wrapper.c").compile("acfutils-wrapper");
 }

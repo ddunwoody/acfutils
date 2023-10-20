@@ -11,15 +11,15 @@ use std::path::Path;
 
 fn main() {
     println!("cargo:rerun-if-env-changed=XPLANE_SDK");
-    println!("cargo:rerun-if-env-changed=LIBACFUTILS");
+    println!("cargo:rerun-if-env-changed=LIBACFUTILS_REDIST");
 
-    let acfutils_path = Path::new(env!("LIBACFUTILS"));
+    let acfutils_redist_path = Path::new(env!("LIBACFUTILS_REDIST"));
     let xplane_sdk_path = Path::new(env!("XPLANE_SDK"));
     let platform = get_target_platform();
 
     #[cfg(feature = "generate-bindings")]
     generate_bindings();
-    build(platform, acfutils_path, xplane_sdk_path);
+    build(platform, acfutils_redist_path, xplane_sdk_path);
 }
 
 #[cfg(feature = "generate-bindings")]
@@ -37,10 +37,10 @@ fn generate_bindings() {
         .expect("Couldn't write bindings");
 }
 
-fn build(platform: Platform, acfutils_path: &Path, xplane_sdk_path: &Path) {
+fn build(platform: Platform, acfutils_redist_path: &Path, xplane_sdk_path: &Path) {
     println!("cargo:rerun-if-changed=wrapper.c");
     let mut builder = cc::Build::new();
-    for flag in get_acfutils_cflags(platform, acfutils_path, xplane_sdk_path) {
+    for flag in get_acfutils_cflags(platform, acfutils_redist_path, xplane_sdk_path) {
         builder.flag(&flag);
     }
     builder.flag("-Wno-unused-parameter");
